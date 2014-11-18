@@ -58,9 +58,9 @@ try:
     import Image
 except ImportError:
     from PIL import Image
-import StringIO
 import subprocess
 import sys
+import tempfile
 import os
 
 __all__ = ['image_to_string']
@@ -110,14 +110,8 @@ def get_errors(error_string):
 
 def tempnam():
     ''' returns a temporary file-name '''
-
-    # prevent os.tmpname from printing an error...
-    stderr = sys.stderr
-    try:
-        sys.stderr = StringIO.StringIO()
-        return os.tempnam(None, 'tess_')
-    finally:
-        sys.stderr = stderr
+    tmpfile = tempfile.NamedTemporaryFile(prefix="tess_")
+    return tmpfile.name
 
 class TesseractError(Exception):
     def __init__(self, status, message):
@@ -162,7 +156,7 @@ def image_to_string(image, lang=None, boxes=False, config=None):
         if status:
             errors = get_errors(error_string)
             raise TesseractError(status, errors)
-        f = file(output_file_name)
+        f = open(output_file_name)
         try:
             return f.read().strip()
         finally:
