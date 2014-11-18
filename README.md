@@ -13,7 +13,10 @@ bounding box data is planned for future releases.
 
 USAGE:
 ```
- > import Image
+ > try:
+ >     import Image
+ > except ImportError:
+ >     from PIL import Image
  > import pytesseract
  > print(pytesseract.image_to_string(Image.open('test.png')))
  > print(pytesseract.image_to_string(Image.open('test-european.jpg'), lang='fra'))
