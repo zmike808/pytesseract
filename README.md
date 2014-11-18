@@ -53,4 +53,5 @@ CONTRIBUTERS:
 - Originally written by [Samuel Hoffstaetter](https://github.com/hoffstaetter) 
 - [Juarez Bochi](https://github.com/jbochi)
 - [Matthias Lee](https://github.com/madmaze)
+- [Lars Kistner](https://github.com/Sr4l)
 
